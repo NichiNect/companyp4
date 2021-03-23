@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -81,7 +82,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        
+        return view('admin.article.edit', compact('article'));
     }
 
     /**
@@ -91,9 +94,30 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $r, $id)
     {
-        //
+        $oldArticle = Article::findOrFail($id);
+
+        if($r->hasFile('picture')) {
+            Storage::delete('public/article/picture/' . $oldArticle->picture);
+            $file = $r->file('picture');
+            $extension = $file->extension();
+            $imgName = time() . '.' . $extension;
+            $file->storeAs('article/picture', $imgName, 'public');
+        } else {
+            $imgName = $oldArticle->picture;
+        }
+
+        $oldArticle->update([
+            'user_id' => auth()->user()->id,
+            'title' => $r->title,
+            'slug' => Str::slug($r->title),
+            'picture' => $imgName,
+            'content' => $r->content,
+        ]);
+
+        session()->flash('success', 'The article was edited successfully!');
+        return redirect()->route('admin.article.index');
     }
 
     /**
@@ -104,6 +128,11 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        Storage::delete('public/article/picture/' . $article->picture);
+        $article->delete();
+
+        session()->flash('success', 'The article was deleted successfully!');
+        return redirect()->route('admin.article.index');
     }
 }

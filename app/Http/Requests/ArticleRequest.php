@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'picture' => ['required', 'mimes:jpg,jpeg,png,gif'],
+            'picture' => ['mimes:jpg,jpeg,png,gif'],
             'content' => ['required', 'min:5']
         ];
     }
