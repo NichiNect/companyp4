@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\DashboardController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/article/{id}', [App\Http\Controllers\HomeController::class, 'showArticle'])->name('home.showarticle');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

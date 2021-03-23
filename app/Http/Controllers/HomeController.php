@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $article = Article::latest()->limit(6)->get();
+        return view('home', compact('article'));
+    }
+
+    public function showArticle($id)
+    {
+        $article = Article::findOrFail($id);
+        $articles = Article::latest()->limit(6)->get();
+
+        return view('show-article', compact('article', 'articles'));
     }
 }
