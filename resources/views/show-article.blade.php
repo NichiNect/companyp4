@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <img src="{{ asset('/storage/article/picture/' . $article->picture) }}" class="img-thumbnail" alt="" style="width: 100%;">
         <div class="my-5">
             <div class="mt-4 text-center">
@@ -14,10 +14,10 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         @foreach ($articles as $a)
         <div class="row">
-            <div class="col-md-6 mt-3">
+            <div class="col-md-12 mt-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">
@@ -30,7 +30,7 @@
                                         {{ Str::limit($a->title, 18) }}
                                     </a>
                                 </p>
-                                <p>{{ Str::limit($a->content, 30) }}</p>
+                                <p>{{ Str::limit($a->content, 100) }}</p>
                             </div>
                         </div>
                     </div>

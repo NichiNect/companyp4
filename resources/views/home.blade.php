@@ -77,7 +77,8 @@
                 <hr class="garis">
             </div>
         </div>
-        <form action="">
+        <form action="" method="POST">
+            @csrf
             <div class="row my-4">
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -96,7 +97,7 @@
                         <textarea name="message" id="message" rows="10" class="form-control" placeholder="Your Message.."></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-outline-primary" style="border-radius: 0px;">Send!</button>
+                        <button type="button" class="btn btn-outline-primary px-5" style="border-radius: 0px;">Send!</button>
                     </div>
                 </div>
             </div>
