@@ -18,13 +18,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('style')
 </head>
 <body>
     <div id="app">
         <x-navbar_admin></x-navbar_admin>
-        <main class="py-4">
+        <main class="py-3">
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 </html>

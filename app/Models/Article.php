@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Articles extends Model
+class Article extends Model
 {
     use HasFactory;
 
@@ -13,4 +13,8 @@ class Articles extends Model
         'user_id', 'title', 'slug', 'picture', 'content'
     ];
     
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

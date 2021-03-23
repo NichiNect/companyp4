@@ -25,10 +25,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Route::resource('articles', ArticlesController::class);
     Route::prefix('articles')->group(function () {
-        Route::get('', [ArticleController::class, 'index'])->name('admin.articles.index');
+        Route::get('', [ArticleController::class, 'index'])->name('admin.article.index');
+        Route::get('/create-new-article', [ArticleController::class, 'create'])->name('admin.article.create');
+        Route::post('/create-new-article', [ArticleController::class, 'store'])->name('admin.article.store');
+        Route::get('/detail-article/{id}', [ArticleController::class, 'show'])->name('admin.article.show');
     });
 });

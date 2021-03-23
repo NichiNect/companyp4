@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Article;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -14,7 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::with('author')->latest()->paginate(10);
+        return view('admin.article.index', compact('articles'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article.create');
     }
 
     /**
@@ -33,9 +37,27 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $r)
     {
-        //
+        if($r->hasFile('picture')) {
+            $file = $r->file('picture');
+            $extension = $file->extension();
+            $imgName = time() . '.' . $extension;
+            $file->storeAs('article/picture', $imgName, 'public');
+        } else {
+            $imgName = '';
+        }
+
+        $article = Article::create([
+            'user_id' => auth()->user()->id,
+            'title' => $r->title,
+            'slug' => Str::slug($r->title),
+            'picture' => $imgName,
+            'content' => $r->content,
+        ]);
+
+        session()->flash('success', 'The new article was created successfully!');
+        return redirect()->route('admin.article.index');
     }
 
     /**
@@ -46,7 +68,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        return view('admin.article.show', compact('article'));
     }
 
     /**
