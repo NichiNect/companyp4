@@ -6,20 +6,31 @@
         max-width: 60%;
         border: 1px #444 solid;
     }
+    html {
+        scroll-behavior: smooth;
+    }
 </style>
 @endsection
 
 @section('content')
 <section id="home">
-    <div class="jumbotron">
+    <div class="jumbotron mb-0">
         <div class="container">
             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, deserunt.</h3>
             <p>Lorem ipsum dolor sit amet.</p>
             <hr class="my-4">
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat voluptate voluptatibus quam deserunt laborum laudantium corrupti, blanditiis, ducimus ipsum id nihil natus ex aperiam totam maxime dicta quisquam corporis sunt quae doloribus deleniti expedita? Ipsam doloribus, quis nemo maiores quae id iste eligendi eum ad, sed a vitae. Ad, ipsam.</p>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quae, praesentium dignissimos pariatur excepturi autem optio ea! Aut tenetur enim incidunt aliquam facere voluptatum quo?</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat voluptate voluptatibus quam deserunt laborum laudantium corrupti, blanditiis, ducimus ipsum id nihil natus ex aperiam totam maxime dicta quisquam corporis sunt quae doloribus deleniti expedita? Ipsam doloribus, quis nemo maiores quae id iste eligendi eum ad, sed a vitae. Ad, ipsam.</p>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quae, praesentium dignissimos pariatur excepturi autem optio ea! Aut tenetur enim incidunt aliquam facere voluptatum quo?</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ asset('img/jumbotron-pict.svg') }}" alt="" class="img-fluid pt-2">
+                </div>
+            </div>
         </div>
     </div>
+    <img src="{{ asset('img/wave.svg') }}" alt="">
 </section>
 
 <div class="container">
@@ -30,7 +41,7 @@
                 <hr class="garis">
             </div>
         </div>
-        <div class="row my-4">
+        <div class="row my-3">
             <div class="col-lg-6">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quaerat hic quae nesciunt officia itaque veritatis. Voluptatem fuga tempora ipsum placeat numquam ipsa fugit officia temporibus at assumenda beatae laborum, sed officiis cupiditate facilis nesciunt molestiae. Quia cupiditate, corporis eligendi, architecto quod delectus omnis ullam neque in, qui temporibus fugiat autem maxime exercitationem placeat voluptates libero suscipit nesciunt veritatis quasi dolore quisquam? Quasi ratione reprehenderit dolores, vitae eligendi repellat architecto earum iure rem? Ratione ea ullam repellendus debitis vero qui, vitae necessitatibus quo, totam officia, odio quidem cum excepturi atque fugit fuga? Est, et ratione inventore dignissimos aspernatur voluptate quo perspiciatis, accusamus fugit doloremque temporibus, quia eum nihil sequi. Adipisci quia deserunt veniam repellendus culpa vitae similique ea aperiam nesciunt voluptatum molestias quas quos ipsa, porro iste ipsum odit voluptas laborum dolores sapiente iure. Praesentium earum quas quisquam deleniti aliquam, consequatur dolorem animi corporis consectetur, fugit asperiores vitae nihil quae et, pariatur at repellendus! Maxime, voluptatem amet veritatis quod, neque non esse labore minus nesciunt nostrum dolorem soluta! Quisquam, laboriosam cumque! Facilis, ea architecto. Enim culpa dolore quisquam minus molestias recusandae, neque illum a quo, consectetur sint est eaque voluptatem ex fugit similique animi maxime blanditiis odio esse vero praesentium.</p>
             </div>
@@ -38,9 +49,17 @@
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis porro illum omnis aspernatur dicta iure rem doloribus amet, pariatur minus, repellendus reprehenderit enim architecto quo veniam accusamus commodi molestias asperiores laboriosam cumque excepturi odio voluptatum quod necessitatibus. Ipsam odit reprehenderit dolorum similique ex assumenda, voluptatibus doloribus est id magni fuga facilis natus. Rerum ipsum odio ex assumenda eos? Accusamus libero dolorum nisi doloremque quis ad, explicabo illo laborum voluptatibus assumenda iusto a reiciendis saepe iste quos quibusdam id voluptates. Optio dignissimos et corporis, repellat ipsam, sunt architecto totam maxime ducimus officiis, nobis quibusdam labore fuga veritatis soluta quod non nihil! Vitae libero cupiditate eius, amet fugiat, omnis est possimus officiis nam debitis quisquam ut esse soluta sequi corporis iusto? Atque molestias, harum porro ullam ea veritatis dolorum enim eligendi perspiciatis nesciunt iste quidem officiis voluptas fugiat amet hic maiores! A iure deleniti nam labore, similique necessitatibus, recusandae ea provident voluptate neque facere ut accusantium sequi quia, eum consectetur accusamus eos amet reprehenderit. Rem minus culpa qui reprehenderit cum, perferendis sint nisi dolores, nam incidunt magnam. Magni assumenda sed natus praesentium.</p>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <img src="{{ asset('img/about.svg') }}" alt="" class="img-fluid mt-2">
+            </div>
+        </div>
     </section>
-    <section id="article">
-        <div class="row text-center my-5">
+</div>
+<img src="{{ asset('img/wave2.svg') }}" alt="">
+<section id="article" class="py-3" style="background-color: #eaeaea;">
+    <div class="container">
+        <div class="row text-center">
             <div class="col-lg-12">
                 <h1>News Article</h1>
                 <hr class="garis">
@@ -50,6 +69,7 @@
             @foreach ($article as $a)
             <div class="col-md-6 mt-3">
                 <div class="card shadow-sm">
+                    <div class="card-header">News Article</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -69,9 +89,12 @@
             </div>
             @endforeach
         </div>
-    </section>
-    <section id="contact">
-        <div class="row text-center my-5">
+    </div>
+</section>
+<img src="{{ asset('img/wave3.svg') }}" alt="">
+<section id="contact">
+    <div class="container">
+        <div class="row text-center">
             <div class="col-lg-12">
                 <h1>Contact</h1>
                 <hr class="garis">
@@ -102,8 +125,8 @@
                 </div>
             </div>
         </form>
-    </section>
-</div>
+    </div>
+</section>
 
 <div class="row">
     <div class="col-lg-12">
